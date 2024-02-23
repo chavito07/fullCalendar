@@ -1,0 +1,11 @@
+despues de tener el proyecto vamoas a instalar npm install primeng@16 y npm install primeicons@6.0.1
+
+npm install primeng@16: Instala PrimeNG versión 16, una biblioteca de componentes de interfaz de usuario (UI) para Angular, que simplifica la creación de interfaces atractivas.
+
+npm install primeicons@6.0.1: Instala PrimeIcons versión 6.0.1, un conjunto de iconos diseñados para trabajar con PrimeNG. Mejora la apariencia y usabilidad de tu aplicación        Angular mediante la integración de iconos listos para usar.
+
+npm i @fullcalendar/core@4.4.2 @fullcalendar/daygrid@4.4.2 @fullcalendar/interaction@4.4.2 @fullcalendar/timegrid@4.4.2
+ @fullcalendar/core: Proporciona la funcionalidad central para la creación de calendarios interactivos en aplicaciones web con Angular.
+ @fullcalendar/daygrid: Agrega vistas de día y mes al calendario, permitiendo la visualización y navegación fácil entre eventos en días y meses específicos.
+ @fullcalendar/interaction: Introduce funciones de interacción como arrastrar y soltar, redimensionar eventos, y selección de fechas para mejorar la experiencia del usuario en el calendario.
+ @fullcalendar/timegrid: Extiende las capacidades del calendario para incluir vistas de tiempo, permitiendo la visualización detallada de eventos a lo largo del día.

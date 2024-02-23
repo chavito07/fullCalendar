@@ -1,27 +1,51 @@
-import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { CalendarOptions } from '@fullcalendar/core';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
 
-describe('AppComponent', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AppComponent]
-  }));
-
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'fullCalendar'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('fullCalendar');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('fullCalendar app is running!');
-  });
-});
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+})
+export class AppComponent {
+[x: string]: any;
+  Events: any[] = [];
+  calendarOptions: CalendarOptions = {
+    plugins: [dayGridPlugin, interactionPlugin],
+    initialView: 'dayGridMonth',
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek',
+    },
+    weekends: true,
+    editable: true,
+    selectable: true,
+    selectMirror: true,
+    dayMaxEvents: true,
+  };
+title: any;
+  constructor(private httpClient: HttpClient) {}
+  onDateClick(res: any) {
+    alert('Clicked on date : ' + res.dateStr);
+  }
+  ngOnInit() {
+    setTimeout(() => {
+      return this.httpClient
+        .get('http://localhost:8888/event.php')
+        .subscribe((res: any) => {
+          this.Events.push(res);
+          console.log(this.Events);
+        });
+    }, 2200);
+    setTimeout(() => {
+      this.calendarOptions = {
+        initialView: 'dayGridMonth',
+        events: this.Events,
+        dateClick: this.onDateClick.bind(this),
+      };
+    }, 2500);
+  }
+}
